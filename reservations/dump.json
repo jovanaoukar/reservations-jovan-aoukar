@@ -1,0 +1,23 @@
+[
+    {
+        "model": "gestion.station",
+        "pk": 1,
+        "fields": {
+            "name": "Toulouse-Matabiau"
+        }
+    },
+    {
+        "model": "gestion.station",
+        "pk": 2,
+        "fields": {
+            "name": "Toulouse-Saint-Agne"
+        }
+    },
+    {
+        "model": "gestion.station",
+        "pk": 3,
+        "fields": {
+            "name": "Toulouse-Saint-Cyprien-Arènes"
+        }
+    }
+]
