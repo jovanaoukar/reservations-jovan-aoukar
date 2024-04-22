@@ -15,4 +15,9 @@ class Client(models.Model):
     address = models.CharField(max_length=300)
     phone = models.CharField(max_length=15)
     
+class Route(models.Model):
+    departure_station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    departure_time = models.DateTimeField()
+    arrival_station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    arrival_time = models.DateTimeField()
 
