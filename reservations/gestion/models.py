@@ -21,3 +21,10 @@ class Route(models.Model):
     arrival_station = models.ForeignKey(Station, on_delete=models.CASCADE)
     arrival_time = models.DateTimeField()
 
+class Reservation(models.Model):
+    reservation_date = models.DateTimeField()
+    reservation_number = models.AutoField(unique=True)
+    seat_number = models.IntegerField()
+    route = models.ForeignKey(Route, on_delete=models.CASCADE)
+    passenger = models.ForeignKey(Passenger, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
