@@ -2,6 +2,8 @@ from django.db import models
 
 class Station(models.Model):
     name = models.CharField(max_length=200)
+    def __str__(self):
+       return self.name
 
 class Passenger(models.Model):
     surname = models.CharField(max_length=100)
@@ -20,6 +22,8 @@ class Route(models.Model):
     departure_time = models.DateTimeField()
     arrival_station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='arrival_station')
     arrival_time = models.DateTimeField()
+    
+    
 
 class Reservation(models.Model):
     reservation_date = models.DateTimeField()
