@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% load static %}
+
+        <link rel="stylesheet" href="{% static 'gestion/style.css' %}">
+
+        {% if routes_list %}
+        <table>
+            <tr>
+                <th>Departure station</th>
+                <th>Departure time</th>
+                <th>Arrival station</th>
+                <th>Arrival date</th>
+            </tr>
+            {% for route in routes_list %}
+            <tr>
+              <td>{{route.departure_station}}</td>
+              <td>{{route.departure_time}}</td>
+              <td>{{route.arrival_station}}</td>
+              <td>{{route.arrival_time}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No routes are available at the moment.</p>
+        {% endif %}
+    </body>
+</html>
