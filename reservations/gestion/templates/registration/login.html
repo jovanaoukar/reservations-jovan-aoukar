@@ -1,3 +1,5 @@
+{# Page based on the login.html page provided on https://docs.djangoproject.com/fr/4.2/topics/auth/default #}
+
 {% extends "base.html" %}
 
 {% load static %}
@@ -6,15 +8,15 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p class="left-elt error-msg">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+        <p class="left-elt error-msg">Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
     {% else %}
-    <p>Please login to see this page.</p>
+        <p<p class="left-elt error-msg">>Please login to see this page.</p>
     {% endif %}
 {% endif %}
 

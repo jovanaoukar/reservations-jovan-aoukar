@@ -1,3 +1,5 @@
+/* Navigation bar inspired from and based examples */
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -6,6 +8,10 @@ table, th, td {
 
 body {
     margin: 0;
+}
+
+.error-msg {
+    color: red;
 }
 
 .left-elt {
@@ -28,9 +34,4 @@ body {
 .navbar a:hover {
     background-color: #ddd;
     color: black;
-}
-
-.navbar a.active {
-    background-color: #04AA6D;
-    color: white;
 }
