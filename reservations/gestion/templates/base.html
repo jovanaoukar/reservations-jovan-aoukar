@@ -5,10 +5,10 @@
         <link rel="stylesheet" href="{% static 'gestion/style.css' %}">
 
         <div class="navbar">
-        <a href="/">Home</a>
         <a href="{% if request.user.is_authenticated %}/accounts/profile/{% else %}/accounts/login/{% endif %}">
             {% if request.user.is_authenticated %}Profile{% else %}Login{% endif %}
         </a>
+        <a href="/">Home</a>
         </div>
 
         <div class="container">
