@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'gestion/style.css' %}">
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<div class="left-elt" style="margin: 10px;">
+    {{ form.username.label_tag }}
+    {{ form.username }}
+</div>
+<div class="left-elt">
+    {{ form.password.label_tag }}
+    {{ form.password }}
+</div>
+
+<input type="submit" value="Login" class="left-elt" style="margin-top: 10px;">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{# Assumes you set up the password_reset view in your URLconf #}
+<p class="left-elt"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+{% endblock %}
