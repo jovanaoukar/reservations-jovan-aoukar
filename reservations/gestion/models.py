@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Station(models.Model):
     name = models.CharField(max_length=200)
@@ -11,9 +12,7 @@ class Passenger(models.Model):
     date_of_birth = models.DateField()
     
 class Client(models.Model):
-    surname = models.CharField(max_length=200)
-    first_name = models.CharField(max_length=200)
-    email = models.EmailField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     address = models.CharField(max_length=300)
     phone = models.CharField(max_length=15)
     
@@ -22,8 +21,6 @@ class Route(models.Model):
     departure_time = models.DateTimeField()
     arrival_station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='arrival_station')
     arrival_time = models.DateTimeField()
-    
-    
 
 class Reservation(models.Model):
     reservation_date = models.DateTimeField()
