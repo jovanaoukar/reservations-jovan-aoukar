@@ -21,6 +21,8 @@ class Route(models.Model):
     departure_time = models.DateTimeField()
     arrival_station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='arrival_station')
     arrival_time = models.DateTimeField()
+    def __str__(self):
+       return f"{self.departure_station}|{self.departure_time} -> {self.arrival_station}|{self.arrival_time}"
 
 class Reservation(models.Model):
     reservation_date = models.DateTimeField()
