@@ -10,11 +10,15 @@ class Passenger(models.Model):
     surname = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
+    def __str__(self):
+       return f"{self.first_name} {self.surname}"
     
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     address = models.CharField(max_length=300)
     phone = models.CharField(max_length=15)
+    def __str__(self):
+       return self.user.get_username()
     
 class Route(models.Model):
     departure_station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='departure_station')
@@ -32,3 +36,5 @@ class Reservation(models.Model):
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     passenger = models.ForeignKey(Passenger, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    def __str__(self):
+       return f"{self.reservation_date}-{self.reservation_number}"
