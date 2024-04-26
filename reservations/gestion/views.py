@@ -33,5 +33,8 @@ def search_routes(request):
 def reservations(request):
     user_id = request.user.id
     client = get_object_or_404(Client.objects, user_id=user_id)
-    reservations_list = Reservation.objects.filter(client=client, route__departure_time__gte=timezone.now())
-    return render(request, "gestion/reservations.html", {"reservations_list":reservations_list})
+    client_reservations_list = Reservation.objects.filter(client=client)
+    upcoming_reservations_list = client_reservations_list.filter(route__departure_time__gt=timezone.now())
+    actual_reservations_list = client_reservations_list.filter(route__departure_time__lte=timezone.now(), route__arrival_time__gte=timezone.now())
+    
+    return render(request, "gestion/reservations.html", {"upcoming_reservations":upcoming_reservations_list, "actual_reservations":actual_reservations_list})
