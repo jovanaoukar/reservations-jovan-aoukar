@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'gestion/style.css' %}">
+
+{% block content %}
+
+    <h2 class="left-elt">My upcoming trips</h2>
+    {% if reservations_list %}
+        <table class="left-elt">
+            <tr>
+                <th>Reservation date</th>
+                <th>Reservation #</th>
+                <th>Passenger</th>
+                <th>Departure station</th>
+                <th>Departure time</th>
+                <th>Arrival station</th>
+                <th>Arrival date</th>
+                <th>Seat #</th>
+            </tr>
+            {% for reservation in reservations_list %}
+            <tr>
+            <td>{{reservation.reservation_date|date:"Y-m-d H:i"}}</td>
+            <td>{{reservation.reservation_number}}</td>
+            <td>{{reservation.passenger.first_name}} {{reservation.passenger.surname}}</td>
+            <td>{{reservation.route.departure_station.name}}</td>
+            <td>{{reservation.route.departure_time|date:"D d M Y - H:i"}}</td>
+            <td>{{reservation.route.arrival_station.name}}</td>
+            <td>{{reservation.route.arrival_time|date:"D d M Y - H:i"}}</td>
+            <td>{{reservation.seat_number}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p class="left-elt">No reservations made.</p>
+    {% endif %}
+
+{% endblock %}
