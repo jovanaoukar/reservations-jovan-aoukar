@@ -3,4 +3,39 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'gestion/style.css' %}">
 
-{% block content %}{{ reservation }}{% endblock %}
+{% block content %}
+<a href="{% url 'gestion:reservations'%}" style="color:blue; text-decoration:none; margin:20px"> &lt Back</a>
+<table class="left-elt" style="margin-top:5px">
+    <tr>
+        <th colspan="2"><font size=5><em>Reservation #{{reservation.reservation_number}}</em></font></th>
+    </tr>
+    <tr>
+        <th>Reservation date</th>
+        <td>{{reservation.reservation_date|date:"Y-m-d H:i"}}</td>
+    </tr>
+    <tr>
+        <th>Passenger</th>
+        <td>{{reservation.passenger.first_name}} {{reservation.passenger.surname}}</td>
+    </tr>
+    <tr>
+        <th>Departure station</th>
+        <td>{{reservation.route.departure_station.name}}</td>
+    </tr>
+    <tr>
+        <th>Departure time</th>
+        <td>{{reservation.route.departure_time|date:"D d M Y - H:i"}}</td>
+    </tr>
+    <tr>
+        <th>Arrival station</th>
+        <td>{{reservation.route.arrival_station.name}}</td>
+    </tr>
+    <tr>
+        <th>Arrival time</th>
+        <td>{{reservation.route.arrival_time|date:"D d M Y - H:i"}}</td>
+    </tr>
+    <tr>
+        <th>Seat #</th>
+        <td>{{reservation.seat_number}}</td>
+    </tr>
+</table>
+{% endblock %}
