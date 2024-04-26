@@ -38,3 +38,8 @@ def reservations(request):
     actual_reservations_list = client_reservations_list.filter(route__departure_time__lte=timezone.now(), route__arrival_time__gte=timezone.now())
     
     return render(request, "gestion/reservations.html", {"upcoming_reservations":upcoming_reservations_list, "actual_reservations":actual_reservations_list})
+
+@login_required
+def reservation(request, reservation_id):
+    reserv_obj = get_object_or_404(Reservation, pk=reservation_id)
+    return render(request, "gestion/reservation.html", {"reservation":reserv_obj})

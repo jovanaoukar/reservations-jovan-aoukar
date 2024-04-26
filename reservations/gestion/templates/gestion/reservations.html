@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{% static 'gestion/style.css' %}">
 
 {% block content %}
-
     {% if actual_reservations %}
         <h2 class="left-elt">Happening now</h2>
         <table class="left-elt">
@@ -15,9 +14,9 @@
             </tr>
             {% for reservation in actual_reservations %}
             <tr>
-            <td>{{reservation.reservation_number}}</td>
-            <td>{{reservation.route.departure_station.name}}</td>
-            <td>{{reservation.route.arrival_station.name}}</td>
+                <td><a href="{% url 'gestion:reservation' reservation.id %}">{{reservation.reservation_number}}</a></td>
+                <td>{{reservation.route.departure_station.name}}</td>
+                <td>{{reservation.route.arrival_station.name}}</td>
             </tr>
             {% endfor %}
         </table>
@@ -33,9 +32,9 @@
             </tr>
             {% for reservation in upcoming_reservations %}
             <tr>
-            <td>{{reservation.reservation_number}}</td>
-            <td>{{reservation.route.departure_station.name}}</td>
-            <td>{{reservation.route.arrival_station.name}}</td>
+                <td><a href="{% url 'gestion:reservation' reservation.id %}">{{reservation.reservation_number}}</a></td>
+                <td>{{reservation.route.departure_station.name}}</td>
+                <td>{{reservation.route.arrival_station.name}}</td>
             </tr>
             {% endfor %}
         </table>
