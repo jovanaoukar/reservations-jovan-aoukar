@@ -42,4 +42,24 @@
         <p class="left-elt">No reservations made.</p>
     {% endif %}
 
+    <h2 class="left-elt">My past trips</h2>
+    {% if past_reservations %}
+        <table class="left-elt">
+            <tr>
+                <th>Reservation #</th>
+                <th>Departure station</th>
+                <th>Arrival station</th>
+            </tr>
+            {% for reservation in past_reservations %}
+            <tr>
+                <td><a href="{% url 'gestion:reservation' reservation.id %}">{{reservation.reservation_number}}</a></td>
+                <td>{{reservation.route.departure_station.name}}</td>
+                <td>{{reservation.route.arrival_station.name}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p class="left-elt">No reservations made.</p>
+    {% endif %}
+
 {% endblock %}

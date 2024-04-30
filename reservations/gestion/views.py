@@ -36,8 +36,11 @@ def reservations(request):
     client_reservations_list = Reservation.objects.filter(client=client)
     upcoming_reservations_list = client_reservations_list.filter(route__departure_time__gt=timezone.now())
     actual_reservations_list = client_reservations_list.filter(route__departure_time__lte=timezone.now(), route__arrival_time__gte=timezone.now())
-    
-    return render(request, "gestion/reservations.html", {"upcoming_reservations":upcoming_reservations_list, "actual_reservations":actual_reservations_list})
+    past_reservations_list = client_reservations_list.filter(route__arrival_time__lt=timezone.now())
+    return render(request, "gestion/reservations.html", {"upcoming_reservations":upcoming_reservations_list,
+                                                         "actual_reservations":actual_reservations_list,
+                                                         "past_reservations":past_reservations_list
+                                                         })
 
 @login_required
 def reservation(request, reservation_id):
