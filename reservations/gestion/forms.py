@@ -21,5 +21,7 @@ class SearchRouteForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
         super(SearchRouteForm, self).__init__(*args, **kwargs)
-        self.fields['station_choices'].choices = [("","Select...")] + [(station.name, station.name) for station in Station.objects.all().order_by()]
+        station_choices = [("","Select...")] + [(station.name, station.name) for station in Station.objects.all().order_by()]
+        self.fields['departure_station_name'].choices = station_choices
+        self.fields['arrival_station_name'].choices = station_choices
     
