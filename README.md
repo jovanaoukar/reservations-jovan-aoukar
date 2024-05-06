@@ -1,6 +1,10 @@
 # reservations-jovan-aoukar
 
-## Utilisateurs de la base de données:
+### Authentification administrateur:
+Identifiant: admin
+Mot de passe: adminadmin00
+
+### Utilisateurs de la base de données:
 
 1. Barbie Chaite:
     Identifiant: bb
